@@ -7,14 +7,19 @@ const CategorizedToys = () => {
         { value: 'DC', label: 'DC' },
         { value: 'marvel', label: 'marvel' }
     ]
-    const [option, setOption] = useState(null)
+    const [option, setOption] = useState(null);
+    const [toysData, setToysData] = useState([]);
+    useEffect(() => {
+        fetch('https://toylandia-server.vercel.app/toys')
+            .then(res => res.json())
+            .then(data => setToysData(data))
+            .catch(error=>console.log(error.message))
+    }, [])
+    console.log(toysData);
     const handleSelectChange = event => {
         const category = event.value;
         setOption(category);
     }
-    useEffect(() => {
-        fetch()
-    },[])
     return (
         <div className='mt-8 container mx-auto'>
             <Select

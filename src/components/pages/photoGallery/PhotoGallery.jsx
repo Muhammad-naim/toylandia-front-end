@@ -9,14 +9,16 @@ const PhotoGallery = () => {
             .then(data => setImages(data))
             .catch(error=>console.log(error.message))
     },[])
-
-
+     for (const link of images) {
+         link.key = link._id;
+    }
     return (
         <div className="container mx-auto">
             <h2 className="text-5xl text-center mb-8 font-bold">Toys Gallery</h2>
             <PhotoAlbum
                 layout="masonry"
-                photos={images} 
+                photos={images}
+                key={images.map(item=> item._id)}
                 spacing={9}
                 columns={5} 
                 />
