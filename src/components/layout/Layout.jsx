@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../shared/navbar/Navbar";
 import Footer from "../shared/footer/Footer";
+import Banner from "../pages/banner/Banner";
 
 const Layout = () => {
     return (
@@ -11,8 +12,9 @@ const Layout = () => {
             backgroundAttachment: 'fixed',
         }}>
             <div className="">
-                <Navbar/>
-                <Outlet className="mt-16"/>
+                <Navbar />
+                <Banner/>
+                <Outlet/>
                 <Footer/>
             </div>
         </div>

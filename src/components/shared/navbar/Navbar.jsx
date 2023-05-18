@@ -1,9 +1,11 @@
+import {  useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+    const [user, setUser] = useState()
     return (
-        <div className="sticky top-0 w-full z-10">
-            <div className="navbar bg-transparent  shadow-gray-100 container mx-auto">
+        <div className="sticky top-0  backdrop-blur-sm bg-opacity-80 w-full z-10">
+            <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -29,7 +31,14 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                   <img src={'Photo.com'} alt="user" className="h-4 w-4 rounded-full"/>
+                    {
+                        user ? <>
+                            <img src={'Photo.com'} alt="user" className="h-4 w-4 rounded-full" />
+                            <button className="btn btn-ghost">Logout</button>
+                        </> :
+                            <button className="btn btn-ghost">Login</button>
+                    }
+                    
                 </div>
             </div>
         </div>
