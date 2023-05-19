@@ -9,7 +9,7 @@ const Navbar = () => {
         logOut()
     }
     return (
-        <div className="sticky top-0  backdrop-blur-sm bg-opacity-80 w-full z-10 ">
+        <div className="sticky top-0  bg-white   w-full z-10 ">
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">

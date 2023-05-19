@@ -34,15 +34,15 @@ const CategorizedToys = () => {
         <div className='mt-8 container mx-auto'>
             <h1 className='text-5xl font-heading font-bold text-center mb-8 text-[#F379A7]'>Products by categories</h1>
             <ToyDetails/>
-            <Tabs onSelect={event=>handleTabsEvent(event)}>
-                <TabList>
+            <Tabs onSelect={event=>handleTabsEvent(event)} selectedTabPanelClassName=''>
+                <TabList selectedTab>
                     <Tab>All</Tab>
                     <Tab>Anime character</Tab>
                     <Tab>DC character</Tab>
                     <Tab>Marvel character</Tab>
                 </TabList>
 
-                <TabPanel>
+                <TabPanel className=''>
                 <div>
                 <div className="overflow-x-auto w-full">
                     <table className="table w-full">
@@ -50,7 +50,10 @@ const CategorizedToys = () => {
                             {
                                 categorizedData.map(data => {
                                     return (
-                                        <tr key={data._id}>
+                                        <tr
+                                            key={data._id}
+                                            className=''
+                                        >
                                             <td>
                                                 <div className="flex items-center space-x-3">
                                                     <div className="avatar">

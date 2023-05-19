@@ -5,46 +5,34 @@ import {
   RouterProvider,
 } from "react-router-dom"; import './index.css'
 import Layout from './components/layout/Layout';
-import Home from './components/home/Home';
 import Login from './components/pages/login/Login';
 import Signup from './components/pages/signup/Signup';
 import ErrorPage from './components/pages/errorPage/ErrorPage';
-import LayoutWithoutBanner from './components/layout/LayoutWithoutBanner/LayoutWithoutBanner';
 import AuthProvider from './firebase/authProvider/AuthProvider';
+import HomeLayout from './components/layout/homeLayout/HomeLayout';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Layout/>,
     errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <HomeLayout />
       },
-    ]
-  },
-  {
-    path: '/login',
-    element: <LayoutWithoutBanner />,
-    children: [
       {
         path: '/login',
-        element: <Login />
-      }
-    ]
-  },
-  {
-    path: '/signup',
-    element: <LayoutWithoutBanner />,
-    children: [
+        element: <Login />,
+      },
       {
         path: '/signup',
-        element: <Signup />
-      }
+        element: <Signup/>,
+      },
+    
     ]
   },
-
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
