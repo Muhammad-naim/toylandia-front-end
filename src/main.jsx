@@ -16,12 +16,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
-        element: <Home/>
-      }, 
+        element: <Home />
+      },
     ]
   },
   {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/login',
-        element: <Login/>
+        element: <Login />
       }
     ]
   },
@@ -39,18 +39,18 @@ const router = createBrowserRouter([
     element: <LayoutWithoutBanner />,
     children: [
       {
-        path: '/signup', 
-        element: <Signup/>
+        path: '/signup',
+        element: <Signup />
       }
     ]
   },
-  
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>,
 )
