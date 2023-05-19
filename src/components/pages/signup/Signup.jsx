@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
 
 const Signup = () => {
-    const { user, createUser, updateUserInfo, } = useContext(AuthContext)
+    const { createUser, updateUserInfo, } = useContext(AuthContext)
     
     const handleSignUp = event => {
         event.preventDefault()
@@ -13,8 +13,6 @@ const Signup = () => {
         const photo = form.photoURL.value
         const password = form.password.value
         const confirm = form.confirm.value
-        const user = { name, email, photo, password, confirm }
-        // console.log(user);
         if (password === confirm) {
             createUser(email, password)
                 .then(() => {

@@ -8,7 +8,7 @@ const CategorizedToys = () => {
     const [toysData, setToysData] = useState([]);
     const [categorizedData, setCategorizedData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/toys')
+        fetch('https://toylandia-server.vercel.app/toys')
             .then(res => res.json())
             .then(data => {
                 setToysData(data);
@@ -32,7 +32,7 @@ const CategorizedToys = () => {
     }
     return (
         <div className='mt-8 container mx-auto'>
-            <h1 className='text-5xl font-heading font-bold text-center mb-8'>Products by categories</h1>
+            <h1 className='text-5xl font-heading font-bold text-center mb-8 text-[#F379A7]'>Products by categories</h1>
             <ToyDetails/>
             <Tabs onSelect={event=>handleTabsEvent(event)}>
                 <TabList>
