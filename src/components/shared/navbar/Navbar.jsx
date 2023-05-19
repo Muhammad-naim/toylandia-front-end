@@ -2,9 +2,10 @@ import {  useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+    // eslint-disable-next-line no-unused-vars
     const [user, setUser] = useState()
     return (
-        <div className="sticky top-0  backdrop-blur-sm bg-opacity-80 w-full z-10">
+            <div className="sticky top-0  backdrop-blur-sm bg-opacity-80 w-full z-10 ">
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -34,13 +35,14 @@ const Navbar = () => {
                     {
                         user ? <>
                             <img src={'Photo.com'} alt="user" className="h-4 w-4 rounded-full" />
-                            <button className="btn btn-ghost">Logout</button>
+                            <button className="btn btn-ghost btn-sm">Logout</button>
                         </> :
-                            <button className="btn btn-ghost">Login</button>
+                            <Link to={'/login'} className="btn btn-ghost btn-sm bg-[#95B3E0] hover:bg-[#F379A7]">Login</Link>
                     }
                     
                 </div>
             </div>
+            {/* <img className="-translate-y-3 z-40" src="https://htmldemo.net/kidol/kidol/assets/img/photos/1.png"  /> */}
         </div>
     );
 };

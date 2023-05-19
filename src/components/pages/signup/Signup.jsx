@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 const Signup = () => {
     return (
         <div>
-            <div className="hero bg-base-200">
+            <div className="hero font-tl-font">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">
                         <div className="text-center ">
-                            <h1 className="text-4xl font-bold">signup</h1>
+                            <h1 className="text-4xl font-bold font-heading">signup</h1>
                         </div>
                         <form className="card-body px-4 gap-0 py-3">
                             <div className="flex gap-2 justify-center">
@@ -32,7 +32,7 @@ const Signup = () => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text ">Password</span>
+                                        <span className="label-text font-heading">Password</span>
                                     </label>
                                     <input type="text" placeholder="password" className="input input-bordered h-8" />
                                 </div>
@@ -46,7 +46,7 @@ const Signup = () => {
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                             <div className="form-control mt-4">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn btn-primary">Signup</button>
                             </div>
                             <p className="text-center my-2"><small>Already have an account? <Link to={'/login'}>login</Link></small></p>
                         </form>

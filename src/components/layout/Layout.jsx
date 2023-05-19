@@ -11,7 +11,7 @@ const Layout = () => {
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
         }}>
-            <div className="">
+            <div className="font-tl-font">
                 <Navbar />
                 <Banner/>
                 <Outlet/>

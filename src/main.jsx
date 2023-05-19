@@ -9,6 +9,8 @@ import Home from './components/home/Home';
 import Login from './components/pages/login/Login';
 import Signup from './components/pages/signup/Signup';
 import ErrorPage from './components/pages/errorPage/ErrorPage';
+import LayoutWithoutBanner from './components/layout/LayoutWithoutBanner/LayoutWithoutBanner';
+import AuthProvider from './firebase/authProvider/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -20,10 +22,22 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home/>
       }, 
+    ]
+  },
+  {
+    path: '/login',
+    element: <LayoutWithoutBanner />,
+    children: [
       {
         path: '/login',
         element: <Login/>
-      },
+      }
+    ]
+  },
+  {
+    path: '/signup',
+    element: <LayoutWithoutBanner />,
+    children: [
       {
         path: '/signup', 
         element: <Signup/>
@@ -35,5 +49,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}  />  </React.StrictMode>,
+    <AuthProvider>
+    <RouterProvider router={router} />
+    </AuthProvider>
+  </React.StrictMode>,
 )

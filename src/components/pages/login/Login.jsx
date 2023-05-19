@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
-        <div className="hero h-screen">
-            <div className="hero-content flex-col my-auto">
+        <div className="hero font-tl-font">
+            <div className="hero-content flex-col my-12">
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="text-center mt-4">
-                        <h1 className="text-4xl font-bold">Login</h1>
+                        <h1 className="text-4xl font-bold font-heading">Login</h1>
                     </div>
                     <form className="card-body gap-0 py-3">
                         <div className="form-control">
