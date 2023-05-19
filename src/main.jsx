@@ -10,6 +10,7 @@ import Signup from './components/pages/signup/Signup';
 import ErrorPage from './components/pages/errorPage/ErrorPage';
 import AuthProvider from './firebase/authProvider/AuthProvider';
 import HomeLayout from './components/layout/homeLayout/HomeLayout';
+import AllToysPage from './components/pages/allToysPage/AllToysPage';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup/>,
       },
+      {
+        path: "/toys",
+        element: <AllToysPage />,
+        loader: fetch('')
+      }
     
     ]
   },

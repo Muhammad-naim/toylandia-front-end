@@ -2,12 +2,13 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub,  } from "react-icons/fa";
 
 const Login = () => {
     const { signInwithpassword, signInWithSocials, googleProvider, githubProvider } = useContext(AuthContext)
     const navigate = useNavigate()
     const [feedbackMessage, setFeedbackMessage] = useState('')
+    const [isVisible, setIsVisible] = useState(false)
     const handleLogin = event => {
         event.preventDefault()
         const form = event.target;
@@ -32,9 +33,7 @@ const Login = () => {
                 else if (message.includes('wrong-password')) {
                     setFeedbackMessage("incorrect password");
                 }
-            })
-        
-
+            }) 
     }
     return (
         <div className="hero font-tl-font">
@@ -54,15 +53,20 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" name="password" placeholder="password" className="input input-bordered h-8" />
+                            <div className="relative">
+                                <input type={isVisible? 'text': 'password'} name="password" placeholder="password" className="input input-bordered h-8" />
+                                <span className="absolute top-1/4 right-2" onClick={()=>setIsVisible(!isVisible)}>
+                                    {
+                                        isVisible ?
+                                            <FaEyeSlash /> :
+                                            <FaEye/>
+                                    }
+                                </span>
+                            </div>
                             <p className="label py-0 text-red-800"><small>{feedbackMessage}</small></p>
                             <label className="label pb-0">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
-                            {/* <label className="label py-0">
-                           
-                            </label> */}
-                            
+                            </label>                            
                         </div>
                         <div className="form-control mt-4">
                             <button className="btn btn-primary">Login</button>
