@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
-    const { signInwithpassword, } = useContext(AuthContext)
+    const { signInwithpassword, signInWithSocials, googleProvider, githubProvider } = useContext(AuthContext)
     const navigate = useNavigate()
     const [feedbackMessage, setFeedbackMessage] = useState('')
     const handleLogin = event => {
@@ -31,6 +33,7 @@ const Login = () => {
                     setFeedbackMessage("incorrect password");
                 }
             })
+        
 
     }
     return (
@@ -65,6 +68,10 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                         <p className="text-center"><small>new to Toylandia? <Link to={'/signup'}>register</Link></small></p>
+                        <div className="flex justify-center gap-2 my-2">
+                        <button className="p-1 shadow-md hover:shadow-xl rounded-full" onClick={()=>signInWithSocials(googleProvider)} ><FcGoogle className="h-6 w-6"/></button>
+                        <button className="p-1 shadow-md hover:shadow-xl rounded-full" onClick={()=>signInWithSocials(githubProvider)} ><FaGithub className="h-6 w-6"/></button>
+                        </div>
                     </form>
                 </div>
             </div>
