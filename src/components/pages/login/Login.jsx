@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash, FaGithub, } from "react-icons/fa";
 
 const Login = () => {
     const { signInwithpassword, signInWithSocials, googleProvider, githubProvider } = useContext(AuthContext)
+    const location = useLocation()
+    const from = (location.state?.from?.pathname || "/");
     const navigate = useNavigate()
     const [feedbackMessage, setFeedbackMessage] = useState('')
     const [isVisible, setIsVisible] = useState(false)
@@ -14,12 +16,9 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
-        console.log(feedbackMessage);
         signInwithpassword(email, password)
             .then(result => {
-                console.log(result.user)
-                navigate('/')
+                navigate(from)
             })
             .catch(error => {
                 const message = (error.message)
@@ -33,7 +32,7 @@ const Login = () => {
     }
     const handlepopupSignin = (provider) => {
         signInWithSocials(provider)
-            .then(result => navigate(('/')))
+            .then(result => navigate(from))
             .catch(error=>console.log(error.message))
     }
     return (
