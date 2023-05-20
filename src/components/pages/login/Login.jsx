@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash, FaGithub,  } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub, } from "react-icons/fa";
 
 const Login = () => {
     const { signInwithpassword, signInWithSocials, googleProvider, githubProvider } = useContext(AuthContext)
@@ -23,17 +23,18 @@ const Login = () => {
             })
             .catch(error => {
                 const message = (error.message)
-                // console.log(message);
-                if (message.includes('invalid-email')) {
-                    setFeedbackMessage("invalid email or password");
-                }
-                else if (message.includes('user-not-found')) {
+                if (message.includes('user-not-found')) {
                     setFeedbackMessage("invalid email");
                 }
                 else if (message.includes('wrong-password')) {
                     setFeedbackMessage("incorrect password");
                 }
-            }) 
+            })
+    }
+    const handlepopupSignin = (provider) => {
+        signInWithSocials(provider)
+            .then(result => navigate(('/')))
+            .catch(error=>console.log(error.message))
     }
     return (
         <div className="hero font-tl-font">
@@ -54,27 +55,27 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <div className="relative">
-                                <input type={isVisible? 'text': 'password'} name="password" placeholder="password" className="input input-bordered h-8" />
-                                <span className="absolute top-1/4 right-2" onClick={()=>setIsVisible(!isVisible)}>
+                                <input type={isVisible ? 'text' : 'password'} name="password" placeholder="password" className="input input-bordered h-8" />
+                                <span className="absolute top-1/4 right-2" onClick={() => setIsVisible(!isVisible)}>
                                     {
                                         isVisible ?
                                             <FaEyeSlash /> :
-                                            <FaEye/>
+                                            <FaEye />
                                     }
                                 </span>
                             </div>
                             <p className="label py-0 text-red-800"><small>{feedbackMessage}</small></p>
                             <label className="label pb-0">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>                            
+                            </label>
                         </div>
                         <div className="form-control mt-4">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-ghost btn-sm btn-outline">Login</button>
                         </div>
                         <p className="text-center"><small>new to Toylandia? <Link to={'/signup'}>register</Link></small></p>
                         <div className="flex justify-center gap-2 my-2">
-                        <button className="p-1 shadow-md hover:shadow-xl rounded-full" onClick={()=>signInWithSocials(googleProvider)} ><FcGoogle className="h-6 w-6"/></button>
-                        <button className="p-1 shadow-md hover:shadow-xl rounded-full" onClick={()=>signInWithSocials(githubProvider)} ><FaGithub className="h-6 w-6"/></button>
+                            <button className="p-1 shadow-md hover:shadow-xl rounded-full" onClick={() => handlepopupSignin(googleProvider)} ><FcGoogle className="h-6 w-6" /></button>
+                            <button className="p-1 shadow-md hover:shadow-xl rounded-full" onClick={() => handlepopupSignin(githubProvider)} ><FaGithub className="h-6 w-6" /></button>
                         </div>
                     </form>
                 </div>

@@ -1,10 +1,9 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
-    console.log(user);
     const handleLogout = () => {
         logOut()
     }
@@ -27,7 +26,7 @@ const Navbar = () => {
                                     </> :
                                     ""
                             }
-                            <li><Link to={'/'}>Blogs</Link></li>
+                            <li><Link to={'/blog'}>Blogs</Link></li>
                         </ul>
                     </div>
                     <Link className="font-bold normal-case text-2xl" to={'/'}>Toylandia</Link>
@@ -44,21 +43,22 @@ const Navbar = () => {
                                 </> :
                                 ""
                         }
-                        <li><Link to={'/'}>Blogs</Link></li>
+                        <li><Link to={'/blog'}>Blogs</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
                     {
                         user ? <>
-                            <img src={user?.photoURL} alt="user" className="h-8 w-8 rounded-full" />
-                            <button onClick={handleLogout} className="btn btn-ghost btn-sm bg-[#95B3E0] hover:bg-[#F379A7]">Logout</button>
+                            <div className="tooltip tooltip-left " data-tip={user?.displayName}>
+                                <img src={user?.photoURL} alt="user" className="h-8 w-8 rounded-full" />
+                            </div>
+                            <button onClick={handleLogout} className="ml-3 p-1 rounded bg-[#95B3E0] hover:bg-[#F379A7]">Logout</button>
                         </> :
                             <Link to={'/login'} className="btn btn-ghost btn-sm bg-[#95B3E0] hover:bg-[#F379A7]">Login</Link>
                     }
 
                 </div>
             </div>
-            {/* <img className="-translate-y-3 z-40" src="https://htmldemo.net/kidol/kidol/assets/img/photos/1.png"  /> */}
         </div>
     );
 };

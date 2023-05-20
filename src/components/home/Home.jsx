@@ -1,6 +1,5 @@
 import CategorizedToys from "../pages/categorizedToys/CategorizedToys";
 import PhotoGallery from "../pages/photoGallery/PhotoGallery";
-
 const Home = () => {
     return (
         <div className="bg-white relative z-200 ">
