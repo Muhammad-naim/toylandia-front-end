@@ -1,12 +1,18 @@
 import { Rating, ThinStar } from '@smastrom/react-rating';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../firebase/authProvider/AuthProvider';
 
 const ToyCard = ({ categorizedData }) => {
     const navigate = useNavigate()
+    const {user} = useContext(AuthContext)
     const star = { itemShapes: ThinStar, activeFillColor: '#f59e0b', inactiveFillColor: '#ffedd5' }
     const handleShowDetails = id => {
-        navigate(`/toy/${id}`)
+        if (!user) {
+            alert('login first')
+        }
+        navigate(`/toys/${id}`)
     }
     return (
         <td>
