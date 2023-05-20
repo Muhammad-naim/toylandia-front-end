@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'react-tabs/style/react-tabs.css';
 import ToyCard from '../../shared/toyCard/ToyCard';
 const CategorizedToys = () => {
@@ -31,8 +32,10 @@ const CategorizedToys = () => {
         const options = ["anime", "DC", "marvel"]
         setOption(options[event - 1])
     }
+    const notify = () => toast("Wow so easy!");
     return (
         <div className='mt-8 container mx-auto'>
+            <ToastContainer />
             <h1 className='text-5xl font-heading font-bold text-center mb-8 text-[#F379A7]'>Products by categories</h1>
             <Tabs onSelect={event => handleTabsEvent(event)} selectedTabClassName='delay-100 text-[#F379A7] shadow  border-b-1 '>
                 <TabList  className={'flex '} >
@@ -50,6 +53,7 @@ const CategorizedToys = () => {
                                     <tr>
                                         <ToyCard
                                             categorizedData={categorizedData}
+                                            toast={notify}
                                         />
                                     </tr>
                                 </tbody>

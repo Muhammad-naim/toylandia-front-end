@@ -21,7 +21,7 @@ const Navbar = () => {
                             {
                                 user ?
                                     <>
-                                        <li><Link to={'/newitem'}>Add toy</Link></li>
+                                        <li><Link to={'/new-toy'}>Add toy</Link></li>
                                         <li><Link to={'/mytoys'}>My toys</Link></li>
                                     </> :
                                     ""
@@ -38,7 +38,7 @@ const Navbar = () => {
                         {
                             user ?
                                 <>
-                                    <li><Link to={'/newitem'}>Add toy</Link></li>
+                                    <li><Link to={'/new-toy'}>Add toy</Link></li>
                                     <li><Link to={'/mytoys'}>My toys</Link></li>
                                 </> :
                                 ""
