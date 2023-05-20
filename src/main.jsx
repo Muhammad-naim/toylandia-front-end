@@ -14,6 +14,8 @@ import AuthProvider from './firebase/authProvider/AuthProvider';
 import HomeLayout from './components/layout/homeLayout/HomeLayout';
 import AllToysPage from './components/pages/allToysPage/AllToysPage';
 import Blogs from './components/pages/blogPage/Blogs';
+import AddNewToy from './components/pages/addNewToy/AddNewToy';
+import Mytoys from './components/pages/myToys/Mytoys';
 
 const router = createBrowserRouter([
   {
@@ -39,8 +41,16 @@ const router = createBrowserRouter([
         loader: ()=> fetch('https://toylandia-server.vercel.app/toys')
       },
       {
+        path: '/newitem',
+        element: <AddNewToy/>
+      },
+      {
         path: '/blog',
         element: <Blogs/>
+      },
+      {
+        path: '/mytoys',
+        element: <Mytoys/>
       }
     
     ]
