@@ -21,7 +21,7 @@ const AllToysPage = () => {
         event.preventDefault();
         const keyword = event.target.search.value;
         const name = { name: keyword }
-        fetch('http://localhost:5000/search-toy', {
+        fetch('https://toylandia-server.vercel.app/search-toy', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

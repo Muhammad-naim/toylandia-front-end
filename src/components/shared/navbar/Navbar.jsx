@@ -41,7 +41,7 @@ const Navbar = () => {
                                     <li><Link to={'/new-toy'}>Add toy</Link></li>
                                     <li><Link to={'/mytoys'}>My toys</Link></li>
                                 </> :
-                                ""
+                                <></>
                         }
                         <li><Link to={'/blog'}>Blogs</Link></li>
                     </ul>

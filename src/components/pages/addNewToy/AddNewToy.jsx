@@ -1,8 +1,9 @@
 import CreatableSelect from 'react-select/creatable';
+import Swal from 'sweetalert2'
 import useTitle from "../../../hooks/useTitle";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const AddNewToy = () => {
     const { user } = useContext(AuthContext)
@@ -17,19 +18,18 @@ const AddNewToy = () => {
     const handleNewToy = event => {
         event.preventDefault()
         const form = event.target;
-        const ProductName = form.ProductName.value;
+        const name = form.ProductName.value;
         const photoURL = form.photoURL.value;
         const category = selectedOption.value;
         const price = form.price.value;
         const rating = form.rating.value;
-        const quantity = form.quantity.value;
+        const availableQuantity = form.quantity.value;
         const description = form.description.value;
-        const name = form.name.value;
-        const email = form.email.value;
-        console.log(ProductName, photoURL, category, price, quantity, description, rating, name, email);
-        // console.log(form);
-        const newToy = {ProductName, photoURL, category, price, quantity, description, rating, name, email}
-        fetch('http://localhost:5000/new-toy', {
+        const sellerName = form.name.value;
+        const sellerEmail = form.email.value;
+        // console.log(name, photoURL, category, price, availableQuantity, description, rating, sellerName, sellerName);
+        const newToy = { name, photoURL, category, price, availableQuantity, description, rating, sellerName, sellerEmail}
+        fetch('https://toylandia-server.vercel.app/new-toy', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -38,9 +38,14 @@ const AddNewToy = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data.acknowledged);
                 if (data.acknowledged) {
-                    navigate('/new-toy')
+                    Swal.fire({
+                        title: 'Product added',
+                        text: 'Click Ok to continue',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                    form.reset()
                 }
             })
     }

@@ -18,6 +18,7 @@ import AddNewToy from './components/pages/addNewToy/AddNewToy';
 import Mytoys from './components/pages/myToys/Mytoys';
 import ToyDetails from './components/shared/toyDetails/ToyDetails';
 import PrivateRouteContainer from './components/privateRouteContainer/PrivateRouteContainer';
+import UpdateToy from './components/pages/updateToy/UpdateToy';
 
 const router = createBrowserRouter([
   {
@@ -52,12 +53,18 @@ const router = createBrowserRouter([
       },
       {
         path: '/mytoys',
-        element: <Mytoys/>
+        element: <Mytoys />,
+        loader: ()=>fetch(`http://localhost:5173/user-toys?`)
       },
       {
         path: '/toys/:id',
         element: <PrivateRouteContainer><ToyDetails /></PrivateRouteContainer>,
-        loader: ({params})=> fetch(`http://localhost:5000/toys/${params.id}`)
+        loader: ({params})=> fetch(`https://toylandia-server.vercel.app/toys/${params.id}`)
+      },
+      {
+        path: '/update-toy/:id',
+        element: <PrivateRouteContainer><UpdateToy /></PrivateRouteContainer>,
+        loader: ({params})=> fetch(`https://toylandia-server.vercel.app/toys/${params.id}`)
       }
     
     ]
