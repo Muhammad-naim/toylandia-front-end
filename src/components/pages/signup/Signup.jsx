@@ -18,7 +18,6 @@ const Signup = () => {
                 .then(() => {
                     updateUserInfo(name, photo)
                         .then(result => {
-                        console.log(result);
                         })
                         .catch(error=>console.log(error.message))
                 })

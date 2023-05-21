@@ -21,7 +21,6 @@ import { AuthContext } from '../../../firebase/authProvider/AuthProvider';
         const comment = form.comment.value;
         const photo = user?.photoURL;
         const feedback = { name, email, comment, photo }
-        console.log(feedback);
         fetch('https://toylandia-server.vercel.app/add-feedback', {
             method: "POST",
             headers: {
@@ -44,9 +43,6 @@ import { AuthContext } from '../../../firebase/authProvider/AuthProvider';
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={1}
-                    // onSlideChange={() => console.log('slide change')}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    className=''
                 >
                     {
                         feedback.map((item) => {

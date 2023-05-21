@@ -25,7 +25,7 @@ const AddNewToy = () => {
         const description = form.description.value;
         const sellerName = form.name.value;
         const sellerEmail = form.email.value;
-        // console.log(name, photoURL, category, price, availableQuantity, description, rating, sellerName, sellerName);
+
         const newToy = { name, photoURL, category, price, availableQuantity, description, rating, sellerName, sellerEmail}
         fetch('https://toylandia-server.vercel.app/new-toy', {
             method: 'POST',
