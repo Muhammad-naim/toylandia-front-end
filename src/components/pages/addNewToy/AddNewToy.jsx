@@ -19,7 +19,7 @@ const AddNewToy = () => {
         const name = form.ProductName.value;
         const photoURL = form.photoURL.value;
         const category = selectedOption.value;
-        const price = form.price.value;
+        const price = parseFloat(form.price.value).toFixed(2);
         const rating = form.rating.value;
         const availableQuantity = form.quantity.value;
         const description = form.description.value;

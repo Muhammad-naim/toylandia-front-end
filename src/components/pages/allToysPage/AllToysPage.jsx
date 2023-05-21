@@ -11,10 +11,10 @@ const AllToysPage = () => {
     const [toyData, setToyData] = useState(null)
     const [feedback, setFeedback] = useState('')
     const [currentPage, setCurrentPage] = useState(0)
-    const totalData = totalDataCount.totalToys;
+    const [totalData, setTotalData] = useState(totalDataCount.totalToys);
   
     useEffect(() => {
-        fetch(`http://localhost:5000/toys?page=${currentPage}&limit=${20}`)
+        fetch(`https://toylandia-server.vercel.app/toys?page=${currentPage}&limit=${20}`)
             .then(res => res.json())
             .then(data=>setToyData(data))
     }, [currentPage])
@@ -40,6 +40,7 @@ const AllToysPage = () => {
             .then(data => {
                 if (data.length > 0) {
                     setToyData(data)
+                    setTotalData(data?.length)
                 }
                 else {
                     setToyData(null)

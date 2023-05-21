@@ -10,7 +10,7 @@ const CategorizedToys = () => {
     const [categorizedData, setCategorizedData] = useState([])
 
     useEffect(() => {
-        fetch('https://toylandia-server.vercel.app/toys')
+        fetch('https://toylandia-server.vercel.app/all-toys')
             .then(res => res.json())
             .then(data => {
                 setToysData(data);
@@ -32,7 +32,18 @@ const CategorizedToys = () => {
         const options = ["anime", "DC", "marvel"]
         setOption(options[event - 1])
     }
-    const notify = () => toast("Wow so easy!");
+    const notify = () => {
+        return toast.info('please login first', {
+            position: "top-right",
+            autoClose: true,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    };
     return (
         <div className='mt-8 container mx-auto'>
             <ToastContainer />

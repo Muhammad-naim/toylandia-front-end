@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PhotoAlbum from "react-photo-album";
 
+
 const PhotoGallery = () => {
     const [images, setImages] = useState([])
     useEffect(() => {
@@ -8,7 +9,8 @@ const PhotoGallery = () => {
             .then(res => res.json())
             .then(data => setImages(data))
             .catch(error=>console.log(error.message))
-    },[])
+    }, [])
+   
      for (const link of images) {
          link.key = link._id;
     }

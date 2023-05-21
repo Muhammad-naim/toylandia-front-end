@@ -4,15 +4,25 @@ import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
 import { Rating, ThinStar } from '@smastrom/react-rating';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import Select from 'react-select'
+import { FaEdit, FaRegEye, FaTrash } from "react-icons/fa";
+
 
 const Mytoys = () => {
     useTitle('My Toys')
     const navigate = useNavigate()
+    const [selectedOption, setSelectedOption] = useState(null);
     const [mytoys, setMyToys] = useState(null)
     const [feedback, setFeedback] = useState('')
     const { user } = useContext(AuthContext)
-    const url = `http://localhost:5000/user-toys?email=${user?.email}`;
+    const url = `https://toylandia-server.vercel.app/user-toys?email=${user?.email}`;
+
+
     const star = { itemShapes: ThinStar, activeFillColor: '#f59e0b', inactiveFillColor: '#ffedd5' }
+    const options = [
+        { value: 1, label: 'ascending' },
+        { value: -1, label: 'descending' },
+    ]
 
     useEffect(() => {
         fetch(url)
@@ -27,6 +37,19 @@ const Mytoys = () => {
                 }
             })
     }, [url])
+
+    useEffect(() => {
+        if (selectedOption) {
+            fetch(`https://toylandia-server.vercel.app/sorted-toys?value=${selectedOption?.value}&email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setMyToys(data);
+            })
+        }
+        
+    },[selectedOption])
+
+
     const handleShowDetails = id => {
         navigate(`/toys/${id}`)
     }
@@ -34,7 +57,6 @@ const Mytoys = () => {
         navigate(`/update-toy/${id}`)
     }
     const handleDelete = (id) => {
-        console.log(id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -45,7 +67,7 @@ const Mytoys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/delete-toy/${id}`, {
+                fetch(`https://toylandia-server.vercel.app/delete-toy/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -65,10 +87,14 @@ const Mytoys = () => {
         })
 
     }
+    
     return (
         <div className="container mx-auto">
 
             {mytoys ? <>
+                <div className="lg:w-48 lg:my-2">
+                    <Select onChange={setSelectedOption} options={options} />
+                </div>
                 {
                     mytoys?.map(toy => {
                         return (
@@ -93,14 +119,14 @@ const Mytoys = () => {
                                 </div>
                                 <div className="col-span-1 h-full flex flex-col justify-around my-auto">
                                     <p>${toy.price}</p>
-                                    <div className="flex ">
-                                        <button className=" border px-1 rounded bg-[#95B3E0] hover:bg-[#F379A7] " onClick={() => handleShowDetails(toy?._id)}>Details</button>
+                                    <div className="flex flex-col lg:flex-row lg:justify-start">
+                                        <button className=" mx-2 border p-2 rounded bg-[#95B3E0] hover:bg-[#F379A7] " onClick={() => handleShowDetails(toy?._id)}><FaRegEye/></button>
                                         <button
-                                            className=" border px-1 rounded bg-[#95B3E0] hover:bg-[#F379A7] "
+                                            className="mx-2 border p-2 rounded bg-[#95B3E0] hover:bg-[#F379A7] "
                                             onClick={() => handleUpdate(toy?._id)}
-                                        >Update
+                                        ><FaEdit/>
                                         </button>
-                                        <button className=" border px-1 rounded bg-[#95B3E0] hover:bg-[#F379A7] " onClick={() => handleDelete(toy?._id)}>Delete</button>
+                                        <button className="mx-2 border p-2 rounded bg-[#95B3E0] hover:bg-[#F379A7] " onClick={() => handleDelete(toy?._id)}><FaTrash/></button>
                                     </div>
                                 </div>
                             </div>

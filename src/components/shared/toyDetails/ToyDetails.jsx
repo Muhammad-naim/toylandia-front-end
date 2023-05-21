@@ -3,7 +3,6 @@ import { Rating, ThinStar } from '@smastrom/react-rating';
 
 const ToyDetails = () => {
     const toyData = useLoaderData()
-    console.log(toyData);
     const star = { itemShapes: ThinStar, activeFillColor: '#f59e0b', inactiveFillColor: '#ffedd5' }
 
     return (

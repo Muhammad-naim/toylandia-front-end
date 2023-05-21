@@ -1,29 +1,35 @@
 import { Rating, ThinStar } from '@smastrom/react-rating';
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../firebase/authProvider/AuthProvider';
 
 
 const ToyCard = (props) => {
     const { categorizedData, toast } = props;
     const navigate = useNavigate()
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const star = { itemShapes: ThinStar, activeFillColor: '#f59e0b', inactiveFillColor: '#ffedd5' }
     const handleShowDetails = id => {
         if (!user) {
-            toast()
+             toast()
         }
         navigate(`/toys/${id}`)
     }
+    useEffect(() => {
+        AOS.init();
+    },[])
     return (
         <td>
             {
                 categorizedData.map(toy => {
                     return (
                         <div
+                            data-aos="fade-right"
                             key={toy._id}
-                            className="grid grid-cols-4 gap-3 py-2 hover:shadow-lg"
+                            className="grid grid-cols-4 gap-3 py-2 hover:shadow-lg "
                         >
                             <div className="col-span-1 p-1 max-h-40">
                                 <img src={toy.photoURL} className="max-h-full" />

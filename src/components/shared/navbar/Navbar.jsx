@@ -29,6 +29,7 @@ const Navbar = () => {
                             <li><Link to={'/blog'}>Blogs</Link></li>
                         </ul>
                     </div>
+                    <img src="https://www.paseoelhatillo.com/wp-content/uploads/2021/07/toylandia.jpg" alt="" className="max-h-12 hidden lg:block"/>
                     <Link className="font-bold normal-case text-2xl" to={'/'}>Toylandia</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">

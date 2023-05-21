@@ -9,7 +9,7 @@ const UpdateToy = () => {
         const availableQuantity = form.quantity.value;
         const description = form.description.value;
         const updatedToy = { price, availableQuantity, description }
-        fetch(`http://localhost:5000/update-toy/${data?._id}`, {
+        fetch(`https://toylandia-server.vercel.app/update-toy/${data?._id}`, {
             method: "PATCH",
             headers:{
             "Content-type": "application/json"
@@ -24,7 +24,8 @@ const UpdateToy = () => {
                         title: 'Updated successfully',
                         text: 'Click Ok to continue',                        
                         confirmButtonText: 'Ok'
-                      })
+                    })
+                    
                 }
             })
     }
