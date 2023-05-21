@@ -7,12 +7,20 @@ import { useEffect, useState } from "react";
 const AllToysPage = () => {
     useTitle('Toys')
     const navigate = useNavigate()
-    const toysData = useLoaderData();
-    const [data, setData] = useState(null)
+    const totalDataCount = useLoaderData();
+    const [toyData, setToyData] = useState(null)
     const [feedback, setFeedback] = useState('')
+    const [currentPage, setCurrentPage] = useState(0)
+    const totalData = totalDataCount.totalToys;
+  
     useEffect(() => {
-        setData(toysData)
-    }, [])
+        fetch(`http://localhost:5000/toys?page=${currentPage}&limit=${20}`)
+            .then(res => res.json())
+            .then(data=>setToyData(data))
+    }, [currentPage])
+    const totalPages = Math.ceil(totalData / 20) ;
+    const pageNumbers = [...Array(totalPages).keys()];
+
     const star = { itemShapes: ThinStar, activeFillColor: '#f59e0b', inactiveFillColor: '#ffedd5' }
     const handleShowDetails = id => {
         navigate(`/toys/${id}`)
@@ -31,13 +39,12 @@ const AllToysPage = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {
-                    setData(data)
+                    setToyData(data)
                 }
                 else {
-                    setData(null)
+                    setToyData(null)
                     setFeedback('No data found!')
                 }
-
             })
     }
     return (
@@ -47,9 +54,9 @@ const AllToysPage = () => {
                 <button type="submit" className="btn btn-ghost btn-sm bg-slate-200 rounded-l-none"><FaSearch /></button>
             </form>
             <div>
-                {data ? <>
+                {toyData ? <>
                     {
-                        data?.map(toy => {
+                        toyData?.map(toy => {
                             return (
                                 <div
                                     key={toy._id}
@@ -85,6 +92,19 @@ const AllToysPage = () => {
                     <span>{feedback}</span>
                     </div>
                     }
+            </div>
+            <div className="my-2 text-center">
+                {
+                    pageNumbers.map(number => {
+                        return <button
+                            key={number}
+                            className={`btn btn-ghost btn-sm mx-1 ${currentPage==number ? 'bg-[#95B3E0]' : ''}`}
+                            onClick={()=>setCurrentPage(number)}
+                        >
+                        {number+1}
+                        </button>
+                    })
+                }
             </div>
         </div>
     );

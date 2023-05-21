@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useTitle from "../../../hooks/useTitle";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
 import { Rating, ThinStar } from '@smastrom/react-rating';

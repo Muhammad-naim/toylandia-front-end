@@ -3,11 +3,9 @@ import Swal from 'sweetalert2'
 import useTitle from "../../../hooks/useTitle";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../firebase/authProvider/AuthProvider";
-import { Navigate, useNavigate } from 'react-router-dom';
 
 const AddNewToy = () => {
     const { user } = useContext(AuthContext)
-    const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState(null);
     useTitle('Add New Toy')
     const options = [
