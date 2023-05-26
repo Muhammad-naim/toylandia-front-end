@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       {
         path: '/mytoys',
         element: <Mytoys />,
-        loader: ()=>fetch(`http://localhost:5173/user-toys?`)
+        loader: ()=>fetch(`https://toylandia-server.vercel.app/user-toys?`)
       },
       {
         path: '/toys/:id',
